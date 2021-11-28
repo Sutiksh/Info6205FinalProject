@@ -38,21 +38,27 @@ public class Unicode {
 
     public static void main(String[] args) throws IOException {
         Unicode unicode = new Unicode();
-        List<String> words = FileUtil.hindiWordsList("Unicode/res/hindiChar.csv");
+        List<String> words = FileUtil.hindiWordsList("Unicode/res/extendedHindiWords.csv");
         String[] arr = new String[words.size()];
+
         Supplier<List<String>> supplier = () -> {
             Random random = new Random();
-            for(int i=0; i<arr.length; i++){
-                arr[i] = words.get(random.nextInt(words.size()));
+            for(int k=0; k<words.size(); k++){
+                arr[k] = words.get(random.nextInt(words.size()));
             }
 
             return Arrays.asList(arr);
         };
+
         Benchmark_Timer<List<String>> bTimer = new Benchmark_Timer<>("Benchmark Test", null, (x) -> unicode.sort(Arrays.asList(arr)), null);
 
-
         double time = bTimer.runFromSupplier(supplier, 10);
-        System.out.println(" Order Situation- Randomly Ordered" + " Time Taken: " + time);
+        System.out.println(" Order Situation- Randomly Ordered" + " Time Taken: " + time + "ms");
+
+
+
+
+
 
     }
 }
