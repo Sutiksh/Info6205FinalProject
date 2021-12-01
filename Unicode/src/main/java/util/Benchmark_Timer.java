@@ -4,12 +4,6 @@
 
 package util;
 
-import sort.Insertion;
-import sort.Unicode;
-
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Random;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -131,41 +125,6 @@ public class Benchmark_Timer<T> implements Benchmark<T> {
     private final Consumer<T> fPost;
 
     final static LazyLogger logger = new LazyLogger(Benchmark_Timer.class);
-
-    /**
-     * Testing the implementation of Timer Class with Insertion Sort
-     */
-//    public static void main(String[] args) {
-//
-//        //Instantiate the insertion sort class
-//        Unicode unicode = new Unicode();
-//
-//        //Instantiate Benchmark_Timer class to perform Benchmark Test
-//        Benchmark_Timer<Integer[]> bTimer = new Benchmark_Timer<>("Benchmark Test", null, (x) -> unicode.demo(), null);
-//
-//        //Create a randomly ordered array and run benchmark test
-//        for (int i = 500; i < 12000; i = i * 2) {
-//
-//            int j = i;
-//
-//            //Provide a randomly ordered array of size j to supplier
-//            Supplier<Integer[]> supplier = () -> {
-//                Random random = new Random();
-//                Integer[] arr = new Integer[j];
-//
-//                //Generate the random array
-//                for (int k = 0; k < j; k++) {
-//                    arr[k] = random.nextInt(j);
-//                }
-//                return arr;
-//            };
-//
-//            //Time taken by insertion sort to run 10 times
-//            double time = bTimer.runFromSupplier(supplier, 10);
-//
-//            System.out.println("Value of N: " + i + " Order Situation- Randomly Ordered" + " Time Taken: " + time);
-//        }
-//    }
 
 
 }

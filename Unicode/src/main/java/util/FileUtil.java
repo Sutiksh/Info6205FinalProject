@@ -15,9 +15,6 @@ public class FileUtil {
             String line = br.readLine();
 
             while(line != null) {
-//                System.out.println(line);
-//                String[] names = line.split(",");
-//                String word = extractName(names);
                 hindiWords.add(line);
                 line = br.readLine();
             }
@@ -29,8 +26,4 @@ public class FileUtil {
         return hindiWords;
     }
 
-    public static String extractName(String[] words){
-        String word = words[0];
-        return word;
-    }
 }
