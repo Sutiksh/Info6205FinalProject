@@ -39,26 +39,16 @@ public class Unicode {
     public static void main(String[] args) throws IOException {
         Unicode unicode = new Unicode();
         List<String> words = FileUtil.hindiWordsList("Unicode/res/extendedHindiWords.csv");
-        String[] arr = new String[words.size()];
 
         Supplier<List<String>> supplier = () -> {
-            Random random = new Random();
-            for(int k=0; k<words.size(); k++){
-                arr[k] = words.get(random.nextInt(words.size()));
-            }
-
-            return Arrays.asList(arr);
+           Collections.shuffle(words);
+            return words;
         };
 
-        Benchmark_Timer<List<String>> bTimer = new Benchmark_Timer<>("Benchmark Test", null, (x) -> unicode.sort(Arrays.asList(arr)), null);
+        Benchmark_Timer<List<String>> bTimer = new Benchmark_Timer<>("Benchmark Test", null, (x) -> unicode.sort(words), null);
 
         double time = bTimer.runFromSupplier(supplier, 10);
         System.out.println(" Order Situation- Randomly Ordered" + " Time Taken: " + time + "ms");
-
-
-
-
-
 
     }
 }
