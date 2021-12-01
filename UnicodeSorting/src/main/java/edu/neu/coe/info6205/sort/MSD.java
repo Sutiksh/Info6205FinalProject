@@ -1,10 +1,10 @@
-package sort;
+package edu.neu.coe.info6205.sort;
 
 import java.util.List;
 
 public class MSD {
 
-    private static int R = 2560; // radix
+    private static final int R = 2560; // radix
     private static final int M = 15; // cutoff for small subarrays
     private static String[] aux; // auxiliary array for distribution
 

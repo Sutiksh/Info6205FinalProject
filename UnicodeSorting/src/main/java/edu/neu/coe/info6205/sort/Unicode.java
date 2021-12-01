@@ -1,36 +1,40 @@
-package sort;
+package edu.neu.coe.info6205.sort;
 
-import util.Benchmark_Timer;
-import util.FileUtil;
+import edu.neu.coe.info6205.util.Benchmark_Timer;
+import edu.neu.coe.info6205.util.FileUtil;
 
 import java.io.IOException;
-import java.util.*;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
 import java.util.function.Supplier;
 
 public class Unicode {
 
-    public void sort(List<String> words){
+    public void sort(List<String> words) {
         try {
 //            String[] hindiArr = {"गुणवत्ता", "एशिया", "खाना", "पकाना", "फोटोग्राफी", "भारतीय", "मसाला", "विध"};
 //            words.stream().sorted().forEach(System.out::println);
             List<String> test = new ArrayList<>();
-            for(int i=0; i<words.size(); i++){
-                byte[] bytearr = words.get(i).getBytes("UTF-16");
-                test.add(new String(bytearr, "UTF-16"));
+            for (String word : words) {
+                byte[] bytearr = word.getBytes(StandardCharsets.UTF_16);
+                test.add(new String(bytearr, StandardCharsets.UTF_16));
             }
 
 //             String encodedString = MimeUtility.encodeText(test, "utf-16", "B");
             System.out.println("...Before Sorting...");
-            for(String str: test){
+            for (String str : test) {
                 System.out.println(str);
             }
             MSD.sort(test);
 
             System.out.println("\n...After Sorting...");
-            for(String str: test){
+            for (String str : test) {
                 System.out.println(str);
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Error: " + e);
         }
     }
@@ -43,7 +47,7 @@ public class Unicode {
 
         Supplier<List<String>> supplier = () -> {
             Random random = new Random();
-            for(int k=0; k<words.size(); k++){
+            for (int k = 0; k < words.size(); k++) {
                 arr[k] = words.get(random.nextInt(words.size()));
             }
 
@@ -54,10 +58,6 @@ public class Unicode {
 
         double time = bTimer.runFromSupplier(supplier, 10);
         System.out.println(" Order Situation- Randomly Ordered" + " Time Taken: " + time + "ms");
-
-
-
-
 
 
     }

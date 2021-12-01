@@ -1,4 +1,4 @@
-package util;
+package edu.neu.coe.info6205.util;
 
 import org.apache.log4j.Appender;
 import org.apache.log4j.Level;

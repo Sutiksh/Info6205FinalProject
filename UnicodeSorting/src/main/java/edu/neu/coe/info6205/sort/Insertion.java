@@ -1,4 +1,4 @@
-package sort;
+package edu.neu.coe.info6205.sort;
 
 import java.util.List;
 

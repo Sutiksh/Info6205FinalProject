@@ -1,4 +1,4 @@
-package util;
+package edu.neu.coe.info6205.util;
 
 import java.lang.reflect.Array;
 import java.util.Collection;

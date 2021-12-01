@@ -2,20 +2,14 @@
  * Copyright (c) 2018. Phasmid Software
  */
 
-package util;
+package edu.neu.coe.info6205.util;
 
-import sort.Insertion;
-import sort.Unicode;
-
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Random;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.function.UnaryOperator;
 
-import static util.Utilities.formatWhole;
+import static edu.neu.coe.info6205.util.Utilities.formatWhole;
 
 /**
  * This class implements a simple Benchmark utility for measuring the running time of algorithms.
