@@ -68,7 +68,7 @@ public class QuickDualPivot {
 
 
     // print array to standard output
-    private static void show(Comparable[] a) {
+    public static void show(Comparable[] a) {
         for (int i = 0; i < a.length; i++) {
             System.out.println(a[i]);
         }
