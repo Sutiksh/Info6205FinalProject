@@ -19,21 +19,20 @@ public class QuickDualPivot {
         int lt = lo + 1, gt = hi - 1;
         int i = lo + 1;
         while (i <= gt) {
-            if       (less(a[i], a[lo])) exch(a, lt++, i++);
-            else if  (less(a[hi], a[i])) exch(a, i, gt--);
-            else                         i++;
+            if (less(a[i], a[lo])) exch(a, lt++, i++);
+            else if (less(a[hi], a[i])) exch(a, i, gt--);
+            else i++;
         }
         exch(a, lo, --lt);
         exch(a, hi, ++gt);
 
         // recursively sort three subarrays
-        sort(a, lo, lt-1);
-        if (less(a[lt], a[gt])) sort(a, lt+1, gt-1);
-        sort(a, gt+1, hi);
+        sort(a, lo, lt - 1);
+        if (less(a[lt], a[gt])) sort(a, lt + 1, gt - 1);
+        sort(a, gt + 1, hi);
 
         assert isSorted(a, lo, hi);
     }
-
 
 
     /***************************************************************************
@@ -61,10 +60,9 @@ public class QuickDualPivot {
 
     private static boolean isSorted(Comparable[] a, int lo, int hi) {
         for (int i = lo + 1; i <= hi; i++)
-            if (less(a[i], a[i-1])) return false;
+            if (less(a[i], a[i - 1])) return false;
         return true;
     }
-
 
 
     // print array to standard output
@@ -76,7 +74,7 @@ public class QuickDualPivot {
 
     // Read strings from standard input, sort them, and print.
     public static void main(String[] args) {
-        String[] a = new String[]{"कम", "केम","काम","कूम", "कुम"};
+        String[] a = new String[]{"कम", "केम", "काम", "कूम", "कुम"};
         QuickDualPivot.sort(a);
         show(a);
     }

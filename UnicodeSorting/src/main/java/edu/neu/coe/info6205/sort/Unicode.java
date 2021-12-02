@@ -4,6 +4,7 @@ import edu.neu.coe.info6205.util.Benchmark_Timer;
 import edu.neu.coe.info6205.util.FileUtil;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -11,26 +12,25 @@ import java.util.function.Supplier;
 
 public class Unicode {
 
-    public void sort(List<String> words){
+    public void sort(List<String> words) {
         try {
             List<String> test = new ArrayList<>();
-            for(int i=0; i<words.size(); i++){
-                byte[] bytearr = words.get(i).getBytes("UTF-16");
-                test.add(new String(bytearr, "UTF-16"));
+            for (String word : words) {
+                byte[] bytearr = word.getBytes(StandardCharsets.UTF_16);
+                test.add(new String(bytearr, StandardCharsets.UTF_16));
             }
 
-
             System.out.println("...Before Sorting...");
-            for(String str: test){
+            for (String str : test) {
                 System.out.println(str);
             }
             MSD.sort(test);
 
             System.out.println("\n...After Sorting...");
-            for(String str: test){
+            for (String str : test) {
                 System.out.println(str);
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Error: " + e);
         }
     }
@@ -38,9 +38,9 @@ public class Unicode {
 
     public static void main(String[] args) throws IOException {
         Unicode unicode = new Unicode();
-       List<String> words = FileUtil.hindiWordsList("extendedHindiWords.csv");
+        List<String> words = FileUtil.hindiWordsList("extendedHindiWords.csv");
         Supplier<List<String>> supplier = () -> {
-           Collections.shuffle(words);
+            Collections.shuffle(words);
             return words;
         };
 
@@ -49,11 +49,11 @@ public class Unicode {
         System.out.println("MSD Radix Sort - Order Situation- Randomly Ordered" + " Time Taken: " + time + "ms");
 
         String[] dualPivotInput = words.toArray(new String[0]);
-        QuickDualPivot quickDualPivot =  new QuickDualPivot();
-        Benchmark_Timer<List<String>> bTimerDualPivotQuick = new Benchmark_Timer<>("Benchmark Test", null, (x) -> quickDualPivot.sort(dualPivotInput), null);
+        QuickDualPivot quickDualPivot = new QuickDualPivot();
+        Benchmark_Timer<List<String>> bTimerDualPivotQuick = new Benchmark_Timer<>("Benchmark Test", null, (x) -> QuickDualPivot.sort(dualPivotInput), null);
 
         double time1 = bTimerDualPivotQuick.runFromSupplier(supplier, 100);
-        quickDualPivot.show(dualPivotInput);
+        QuickDualPivot.show(dualPivotInput);
         System.out.println(" Dual Pivot QuickSort - Order Situation - Randomly Ordered" + " Time Taken: " + time1 + "ms");
     }
 }

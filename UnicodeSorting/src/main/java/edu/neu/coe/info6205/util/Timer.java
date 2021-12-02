@@ -208,7 +208,6 @@ public class Timer {
      * @return the corresponding number of milliseconds.
      */
     private static double toMillisecs(long ticks) {
-        // TO BE IMPLEMENTED
         return Math.max(0L, Math.round(ticks / 1000000.0d));
     }
 
