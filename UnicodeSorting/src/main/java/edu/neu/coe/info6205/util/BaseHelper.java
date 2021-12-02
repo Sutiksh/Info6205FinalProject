@@ -20,14 +20,6 @@ public class BaseHelper<X extends Comparable<X>> implements Helper<X> {
             throw new RuntimeException(e);
         }
     }
-    /**
-     * Constructor to create a Helper with a random seed and an n value of 0.
-     *
-     * @param description the description of this Helper (for humans).
-     */
-    public BaseHelper(String description) {
-        this(description, 0);
-    }
 
     /**
      * @return false

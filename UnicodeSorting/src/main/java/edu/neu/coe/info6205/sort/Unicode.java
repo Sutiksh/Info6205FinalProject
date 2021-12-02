@@ -38,7 +38,7 @@ public class Unicode {
 
     public static void main(String[] args) throws IOException {
         Unicode unicode = new Unicode();
-       List<String> words = FileUtil.hindiWordsList("Unicode/res/extendedHindiWords.csv");
+       List<String> words = FileUtil.hindiWordsList("extendedHindiWords.csv");
         Supplier<List<String>> supplier = () -> {
            Collections.shuffle(words);
             return words;

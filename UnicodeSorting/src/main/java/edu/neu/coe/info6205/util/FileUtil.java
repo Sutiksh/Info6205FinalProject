@@ -1,5 +1,6 @@
 package edu.neu.coe.info6205.util;
 
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,10 +8,11 @@ import java.util.List;
 public class FileUtil {
 
     public static List<String> hindiWordsList(String fileName) throws IOException {
-        List<String> hindiWords = new ArrayList<>();
-        FileReader fr = new FileReader(fileName);
+        ClassLoader classLoader = FileUtil.class.getClassLoader();
+        InputStream resourceAsStream = classLoader.getResourceAsStream(fileName);
 
-        try (BufferedReader br = new BufferedReader(fr)) {
+        List<String> hindiWords = new ArrayList<>();
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(resourceAsStream))) {
 
             String line = br.readLine();
 
