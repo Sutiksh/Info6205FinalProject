@@ -10,6 +10,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.function.Supplier;
 
+import static edu.neu.coe.info6205.util.Utilities.show;
+
 public class Unicode {
 
     public void sort(List<String> words) {
@@ -48,12 +50,17 @@ public class Unicode {
         double time = bTimer.runFromSupplier(supplier, 10);
         System.out.println("MSD Radix Sort - Order Situation- Randomly Ordered" + " Time Taken: " + time + "ms");
 
-        String[] dualPivotInput = words.toArray(new String[0]);
+        String[] sortInput = words.toArray(new String[0]);
         QuickDualPivot quickDualPivot = new QuickDualPivot();
-        Benchmark_Timer<List<String>> bTimerDualPivotQuick = new Benchmark_Timer<>("Benchmark Test", null, (x) -> QuickDualPivot.sort(dualPivotInput), null);
-
+        Benchmark_Timer<List<String>> bTimerDualPivotQuick = new Benchmark_Timer<>("Benchmark Test", null, (x) -> QuickDualPivot.sort(sortInput), null);
         double time1 = bTimerDualPivotQuick.runFromSupplier(supplier, 100);
-        QuickDualPivot.show(dualPivotInput);
-        System.out.println(" Dual Pivot QuickSort - Order Situation - Randomly Ordered" + " Time Taken: " + time1 + "ms");
+       // show(sortInput, "QuickDualPivot");
+        System.out.println("Dual Pivot QuickSort - Order Situation - Randomly Ordered" + " Time Taken: " + time1 + "ms");
+
+        TimSort timSort = new TimSort();
+        Benchmark_Timer<List<String>> timSortTimer = new Benchmark_Timer<>("Benchmark Test", null, (x) -> timSort.sort(sortInput, 0, sortInput.length), null);
+        double timSortTime = timSortTimer.runFromSupplier(supplier, 100);
+        show(sortInput, "TimSort");
+        System.out.println("TimSort - Randomly Ordered" + " Time Taken: " + timSortTime + "ms");
     }
 }
