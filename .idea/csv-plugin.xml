@@ -3,6 +3,13 @@
   <component name="CsvFileAttributes">
     <option name="attributeMap">
       <map>
+        <entry key="\UnicodeSorting\src\main\resources\extendedHindiWords.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\Unicode\res\extendedHindiWords.csv">
           <value>
             <Attribute>
