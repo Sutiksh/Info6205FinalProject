@@ -8,6 +8,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 import static edu.neu.coe.info6205.util.Utilities.show;
@@ -45,22 +46,23 @@ public class Unicode {
             Collections.shuffle(words);
             return words;
         };
+        String[] sortInput = words.toArray(new String[0]);
 
         Benchmark_Timer<List<String>> bTimer = new Benchmark_Timer<>("Benchmark Test", null, (x) -> unicode.sort(words), null);
         double time = bTimer.runFromSupplier(supplier, 10);
         System.out.println("MSD Radix Sort - Order Situation- Randomly Ordered" + " Time Taken: " + time + "ms");
 
-        String[] sortInput = words.toArray(new String[0]);
-        QuickDualPivot quickDualPivot = new QuickDualPivot();
-        Benchmark_Timer<List<String>> bTimerDualPivotQuick = new Benchmark_Timer<>("Benchmark Test", null, (x) -> QuickDualPivot.sort(sortInput), null);
-        double time1 = bTimerDualPivotQuick.runFromSupplier(supplier, 100);
-        show(sortInput, "QuickDualPivot");
-        System.out.println("Dual Pivot QuickSort - Order Situation - Randomly Ordered" + " Time Taken: " + time1 + "ms");
+        Consumer<List<String>> quickDualPivotConsumer = (x) -> QuickDualPivot.sort(sortInput);
+        computeBenchMark(supplier, sortInput, quickDualPivotConsumer, "QuickDualPivot" + "- Randomly Ordered");
 
-        TimSort timSort = new TimSort();
-        Benchmark_Timer<List<String>> timSortTimer = new Benchmark_Timer<>("Benchmark Test", null, (x) -> timSort.sort(sortInput, 0, sortInput.length), null);
-        double timSortTime = timSortTimer.runFromSupplier(supplier, 100);
-        show(sortInput, "TimSort");
-        System.out.println("TimSort - Randomly Ordered" + " Time Taken: " + timSortTime + "ms");
+        Consumer<List<String>> listConsumer = (x) -> TimSort.sort(sortInput, 0, sortInput.length);
+        computeBenchMark(supplier, sortInput, listConsumer, "TimSort" + "- Randomly Ordered");
+    }
+
+    private static void computeBenchMark(Supplier<List<String>> supplier, String[] sortInput, Consumer listConsumer, String description) {
+        Benchmark_Timer<List<String>> benchmarkTimer = new Benchmark_Timer<>("Benchmark Test", null, listConsumer, null);
+        double sortTime = benchmarkTimer.runFromSupplier(supplier, 100);
+        show(sortInput, description);
+        System.out.println(description  + " Time Taken: " + sortTime + "ms");
     }
 }
