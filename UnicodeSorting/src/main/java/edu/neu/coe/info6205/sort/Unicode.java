@@ -17,7 +17,7 @@ public class Unicode {
     public void MSDSort(List<String> words) {
         try {
             List<String> test = new ArrayList<>();
-            for(int i=0; i<words.size(); i++){
+            for (int i = 0; i < words.size(); i++) {
                 byte[] bytearr = words.get(i).getBytes("UTF-8");
                 test.add(new String(bytearr, "UTF-8"));
             }
@@ -32,10 +32,10 @@ public class Unicode {
         }
     }
 
-    public void LSDSort(List<String> words){
+    public void LSDSort(List<String> words) {
         try {
             List<String> test = new ArrayList<>();
-            for(int i=0; i<words.size(); i++){
+            for (int i = 0; i < words.size(); i++) {
                 byte[] bytearr = words.get(i).getBytes("UTF-8");
                 test.add(new String(bytearr, "UTF-8"));
             }
@@ -44,7 +44,7 @@ public class Unicode {
             System.out.println("LSD sort started...Done!");
 
 
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Error: " + e);
         }
     }
@@ -69,7 +69,8 @@ public class Unicode {
 
         Consumer<List<String>> quickDualPivotConsumer = (x) -> QuickDualPivot.sort(sortInput);
         computeBenchMark(supplier, sortInput, quickDualPivotConsumer, "QuickDualPivot" + "- Randomly Ordered");
-        Consumer<List<String>> listConsumer = (x) -> TimSort.sort(sortInput, 0, sortInput.length);
+        TimSort timSort = new TimSort();
+        Consumer<List<String>> listConsumer = (x) -> timSort.sort(sortInput, 0, sortInput.length);
         computeBenchMark(supplier, sortInput, listConsumer, "TimSort" + "- Randomly Ordered");
     }
 
@@ -77,6 +78,6 @@ public class Unicode {
         Benchmark_Timer<List<String>> benchmarkTimer = new Benchmark_Timer<>("Benchmark Test", null, listConsumer, null);
         double sortTime = benchmarkTimer.runFromSupplier(supplier, 100);
         show(sortInput, description);
-        System.out.println(description  + " Time Taken: " + sortTime + "ms");
+        System.out.println(description + " Time Taken: " + sortTime + "ms");
     }
 }
