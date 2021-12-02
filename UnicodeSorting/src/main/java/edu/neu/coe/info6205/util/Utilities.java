@@ -21,6 +21,18 @@ public class Utilities {
     }
 
     /**
+     * Check that the given array is sorted.
+     *
+     * @param ts  the array to be checked.
+     * @param <T> the underlying type of ts.
+     * @return false as soon as an inversion is found; otherwise return true.
+     */
+    public static <T extends Comparable<T>> boolean isSorted(T[] ts) {
+        for (int i = 1; i < ts.length; i++) if (ts[i - 1].compareTo(ts[i]) > 0) return false;
+        return true;
+    }
+
+    /**
      * Create a string representing an double, with three decimal places.
      *
      * @param x the number to show.
