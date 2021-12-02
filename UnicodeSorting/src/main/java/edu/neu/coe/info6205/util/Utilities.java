@@ -21,18 +21,6 @@ public class Utilities {
     }
 
     /**
-     *
-     * @param a
-     * @param description
-     */
-    public static void show(Comparable[] a, String description) {
-        System.out.println("Array output with " + description);
-        for (int i = 0; i < a.length; i++) {
-            System.out.println(a[i]);
-        }
-    }
-
-    /**
      * Check that the given array is sorted.
      *
      * @param ts  the array to be checked.
