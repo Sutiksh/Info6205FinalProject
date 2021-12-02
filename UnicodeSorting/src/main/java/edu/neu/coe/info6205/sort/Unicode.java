@@ -68,10 +68,6 @@ public class Unicode {
 
         Consumer<List<String>> listConsumer = (x) -> TimSort.sort(sortInput, 0, sortInput.length);
         computeBenchMark(supplier, sortInput, listConsumer, "TimSort" + "- Randomly Ordered");
-
-        Benchmark_Timer<List<String>> lbTimer = new Benchmark_Timer<>("Benchmark Test", null, (x) -> unicode.LSDSort(words), null);
-        double lsdtime = lbTimer.runFromSupplier(supplier, 10);
-        System.out.println(" Order Situation- Randomly Ordered for LSD" + " Time Taken: " + lsdtime + "ms");
     }
 
     private static void computeBenchMark(Supplier<List<String>> supplier, String[] sortInput, Consumer listConsumer, String description) {
@@ -79,5 +75,15 @@ public class Unicode {
         double sortTime = benchmarkTimer.runFromSupplier(supplier, 100);
         show(sortInput, description);
         System.out.println(description  + " Time Taken: " + sortTime + "ms");
+        String[] dualPivotInput = words.toArray(new String[0]);
+        Benchmark_Timer<List<String>> bTimerDualPivotQuick = new Benchmark_Timer<>("Benchmark Test", null, (x) -> QuickDualPivot.sort(dualPivotInput), null);
+
+        double time1 = bTimerDualPivotQuick.runFromSupplier(supplier, 100);
+//        QuickDualPivot.show(dualPivotInput);
+        System.out.println("Dual Pivot QuickSort - Order Situation - Randomly Ordered" + " Time Taken: " + time1 + "ms");
+
+        Benchmark_Timer<List<String>> lbTimer = new Benchmark_Timer<>("Benchmark Test", null, (x) -> unicode.LSDSort(words), null);
+        double lsdtime = lbTimer.runFromSupplier(supplier, 10);
+        System.out.println(" Order Situation- Randomly Ordered for LSD" + " Time Taken: " + lsdtime + "ms");
     }
 }

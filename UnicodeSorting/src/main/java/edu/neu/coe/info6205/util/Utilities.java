@@ -89,4 +89,13 @@ public class Utilities {
     public static double lg(double n) {
         return Math.log(n) / Math.log(2);
     }
+
+
+    // print array to standard output
+    public static void show(Comparable[] a, String description) {
+        System.out.println("Array output with " + description);
+        for (int i = 0; i < a.length; i++) {
+            System.out.println(a[i]);
+        }
+    }
 }

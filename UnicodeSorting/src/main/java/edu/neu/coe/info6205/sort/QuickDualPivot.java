@@ -1,5 +1,7 @@
 package edu.neu.coe.info6205.sort;
 
+import static edu.neu.coe.info6205.util.Utilities.show;
+
 public class QuickDualPivot {
 
     // quicksort the array a[] using dual-pivot quicksort
@@ -64,19 +66,11 @@ public class QuickDualPivot {
         return true;
     }
 
-
-    // print array to standard output
-    public static void show(Comparable[] a) {
-        for (int i = 0; i < a.length; i++) {
-            System.out.println(a[i]);
-        }
-    }
-
     // Read strings from standard input, sort them, and print.
     public static void main(String[] args) {
         String[] a = new String[]{"कम", "केम", "काम", "कूम", "कुम"};
         QuickDualPivot.sort(a);
-        show(a);
+        show(a, "QuickDualPivot");
     }
 
 }
