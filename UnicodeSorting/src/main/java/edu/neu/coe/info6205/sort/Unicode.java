@@ -7,7 +7,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.function.Supplier;
+
+import static edu.neu.coe.info6205.util.Utilities.show;
 
 public class Unicode {
 
@@ -54,11 +57,24 @@ public class Unicode {
             Collections.shuffle(words);
             return words;
         };
+        String[] sortInput = words.toArray(new String[0]);
 
         Benchmark_Timer<List<String>> bTimer = new Benchmark_Timer<>("Benchmark Test", null, (x) -> unicode.MSDSort(words), null);
         double time = bTimer.runFromSupplier(supplier, 10);
         System.out.println("MSD Radix Sort - Order Situation- Randomly Ordered" + " Time Taken: " + time + "ms");
 
+        Consumer<List<String>> quickDualPivotConsumer = (x) -> QuickDualPivot.sort(sortInput);
+        computeBenchMark(supplier, sortInput, quickDualPivotConsumer, "QuickDualPivot" + "- Randomly Ordered");
+
+        Consumer<List<String>> listConsumer = (x) -> TimSort.sort(sortInput, 0, sortInput.length);
+        computeBenchMark(supplier, sortInput, listConsumer, "TimSort" + "- Randomly Ordered");
+    }
+
+    private static void computeBenchMark(Supplier<List<String>> supplier, String[] sortInput, Consumer listConsumer, String description) {
+        Benchmark_Timer<List<String>> benchmarkTimer = new Benchmark_Timer<>("Benchmark Test", null, listConsumer, null);
+        double sortTime = benchmarkTimer.runFromSupplier(supplier, 100);
+        show(sortInput, description);
+        System.out.println(description  + " Time Taken: " + sortTime + "ms");
         String[] dualPivotInput = words.toArray(new String[0]);
         Benchmark_Timer<List<String>> bTimerDualPivotQuick = new Benchmark_Timer<>("Benchmark Test", null, (x) -> QuickDualPivot.sort(dualPivotInput), null);
 
@@ -69,6 +85,5 @@ public class Unicode {
         Benchmark_Timer<List<String>> lbTimer = new Benchmark_Timer<>("Benchmark Test", null, (x) -> unicode.LSDSort(words), null);
         double lsdtime = lbTimer.runFromSupplier(supplier, 10);
         System.out.println(" Order Situation- Randomly Ordered for LSD" + " Time Taken: " + lsdtime + "ms");
-
     }
 }
