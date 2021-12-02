@@ -4,7 +4,6 @@ import edu.neu.coe.info6205.util.Benchmark_Timer;
 import edu.neu.coe.info6205.util.FileUtil;
 
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -12,25 +11,37 @@ import java.util.function.Supplier;
 
 public class Unicode {
 
-    public void sort(List<String> words) {
+    public void MSDSort(List<String> words) {
         try {
             List<String> test = new ArrayList<>();
-            for (String word : words) {
-                byte[] bytearr = word.getBytes(StandardCharsets.UTF_16);
-                test.add(new String(bytearr, StandardCharsets.UTF_16));
+            for(int i=0; i<words.size(); i++){
+                byte[] bytearr = words.get(i).getBytes("UTF-8");
+                test.add(new String(bytearr, "UTF-8"));
             }
 
-            System.out.println("...Before Sorting...");
-            for (String str : test) {
-                System.out.println(str);
-            }
+            System.out.println("MSD sort started...");
             MSD.sort(test);
+            System.out.println("MSD sort started...Done!");
 
-            System.out.println("\n...After Sorting...");
-            for (String str : test) {
-                System.out.println(str);
-            }
+
         } catch (Exception e) {
+            System.out.println("Error: " + e);
+        }
+    }
+
+    public void LSDSort(List<String> words){
+        try {
+            List<String> test = new ArrayList<>();
+            for(int i=0; i<words.size(); i++){
+                byte[] bytearr = words.get(i).getBytes("UTF-8");
+                test.add(new String(bytearr, "UTF-8"));
+            }
+            System.out.println("LSD sort started...");
+            LSDStringSort.sort(test);
+            System.out.println("LSD sort started...Done!");
+
+
+        } catch (Exception e){
             System.out.println("Error: " + e);
         }
     }
@@ -38,22 +49,26 @@ public class Unicode {
 
     public static void main(String[] args) throws IOException {
         Unicode unicode = new Unicode();
-        List<String> words = FileUtil.hindiWordsList("extendedHindiWords.csv");
+        List<String> words = FileUtil.hindiWordsList("UnicodeSorting/src/main/resources/extendedHindiWords.csv");
         Supplier<List<String>> supplier = () -> {
             Collections.shuffle(words);
             return words;
         };
 
-        Benchmark_Timer<List<String>> bTimer = new Benchmark_Timer<>("Benchmark Test", null, (x) -> unicode.sort(words), null);
+        Benchmark_Timer<List<String>> bTimer = new Benchmark_Timer<>("Benchmark Test", null, (x) -> unicode.MSDSort(words), null);
         double time = bTimer.runFromSupplier(supplier, 10);
         System.out.println("MSD Radix Sort - Order Situation- Randomly Ordered" + " Time Taken: " + time + "ms");
 
         String[] dualPivotInput = words.toArray(new String[0]);
-        QuickDualPivot quickDualPivot = new QuickDualPivot();
         Benchmark_Timer<List<String>> bTimerDualPivotQuick = new Benchmark_Timer<>("Benchmark Test", null, (x) -> QuickDualPivot.sort(dualPivotInput), null);
 
         double time1 = bTimerDualPivotQuick.runFromSupplier(supplier, 100);
-        QuickDualPivot.show(dualPivotInput);
-        System.out.println(" Dual Pivot QuickSort - Order Situation - Randomly Ordered" + " Time Taken: " + time1 + "ms");
+//        QuickDualPivot.show(dualPivotInput);
+        System.out.println("Dual Pivot QuickSort - Order Situation - Randomly Ordered" + " Time Taken: " + time1 + "ms");
+
+        Benchmark_Timer<List<String>> lbTimer = new Benchmark_Timer<>("Benchmark Test", null, (x) -> unicode.LSDSort(words), null);
+        double lsdtime = lbTimer.runFromSupplier(supplier, 10);
+        System.out.println(" Order Situation- Randomly Ordered for LSD" + " Time Taken: " + lsdtime + "ms");
+
     }
 }
