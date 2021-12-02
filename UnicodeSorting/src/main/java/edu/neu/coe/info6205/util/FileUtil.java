@@ -1,8 +1,6 @@
 package edu.neu.coe.info6205.util;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,10 +14,7 @@ public class FileUtil {
 
             String line = br.readLine();
 
-            while (line != null) {
-//                System.out.println(line);
-//                String[] names = line.split(",");
-//                String word = extractName(names);
+            while(line != null) {
                 hindiWords.add(line);
                 line = br.readLine();
             }
@@ -31,8 +26,4 @@ public class FileUtil {
         return hindiWords;
     }
 
-    public static String extractName(String[] words) {
-        String word = words[0];
-        return word;
-    }
 }
