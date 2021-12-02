@@ -54,7 +54,7 @@ public class Unicode {
         QuickDualPivot quickDualPivot = new QuickDualPivot();
         Benchmark_Timer<List<String>> bTimerDualPivotQuick = new Benchmark_Timer<>("Benchmark Test", null, (x) -> QuickDualPivot.sort(sortInput), null);
         double time1 = bTimerDualPivotQuick.runFromSupplier(supplier, 100);
-       // show(sortInput, "QuickDualPivot");
+        show(sortInput, "QuickDualPivot");
         System.out.println("Dual Pivot QuickSort - Order Situation - Randomly Ordered" + " Time Taken: " + time1 + "ms");
 
         TimSort timSort = new TimSort();
