@@ -42,7 +42,7 @@ public class TimSort<X extends Comparable<X>> extends SortWithHelper<X> {
         this(new BaseHelper<>(DESCRIPTION, Config.load(TimSort.class)));
     }
 
-    public static void sort(X[] xs, int from, int to) {
+    public void sort(X[] xs, int from, int to) {
         Arrays.sort(xs, from, to);
     }
 
