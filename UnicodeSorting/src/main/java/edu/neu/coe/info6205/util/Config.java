@@ -12,7 +12,6 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-@SuppressWarnings("SuspiciousMethodCalls")
 public class Config {
 
     /**
