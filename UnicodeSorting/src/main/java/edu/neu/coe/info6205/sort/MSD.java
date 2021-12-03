@@ -15,13 +15,13 @@ public class MSD {
             return -1;
     }
 
-    public static void sort(List<String> a) {
-        int N = a.size();
+    public static void sort(String[] a) {
+        int N = a.length;
         aux = new String[N];
         sort(a, 0, N - 1, 0);
     }
 
-    private static void sort(List<String> a, int lo, int hi, int d) { // Sort from a[lo] to a[hi], starting at the dth
+    private static void sort(String[] a, int lo, int hi, int d) { // Sort from a[lo] to a[hi], starting at the dth
         // character.
         if (hi <= lo + M) {
             Insertion.sort(a, lo, hi, d);
@@ -30,16 +30,16 @@ public class MSD {
         int[] count = new int[R + 2]; // Compute frequency counts.
 
         for (int i = lo; i <= hi; i++) {
-            count[charAt(a.get(i), d) + 2]++;
+            count[charAt(a[i], d) + 2]++;
         }
         for (int r = 0; r < R + 1; r++) {
             count[r + 1] += count[r];
         } // Transform counts to indices.
         for (int i = lo; i <= hi; i++) {
-            aux[count[charAt(a.get(i), d) + 1]++] = a.get(i);
+            aux[count[charAt(a[i], d) + 1]++] = a[i];
         } // Distribute.
         for (int i = lo; i <= hi; i++) {
-            a.set(i, aux[i - lo]);
+            a[i] = aux[i - lo];
         } // Copy back.
         // Recursively sort for each character value.
         for (int r = 0; r < R; r++) {

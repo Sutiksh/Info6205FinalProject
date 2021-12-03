@@ -1,5 +1,6 @@
 package edu.neu.coe.info6205.sort;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -14,10 +15,10 @@ public class MSDTest {
     @Test
     public void msdSortTest1(){
         msd = new MSD();
-        List<String> words = Arrays.asList("d", "c", "e", "a", "b", "a");
-        msd.sort(words);
-        List<String> sortedWords = Arrays.asList("a", "a", "b", "c", "d", "e");
-        assertEquals(sortedWords, words);
+        String[] words = {"d", "c", "e", "a", "b", "a"};
+        MSD.sort(words);
+        String[] sortedWords = {"a", "a", "b", "c", "d", "e"};
+        Assert.assertArrayEquals(sortedWords, words);
 
     }
 }

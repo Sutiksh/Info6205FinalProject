@@ -12,8 +12,8 @@ public class LSDStringSort {
      * @param strArr It contains an array of String from which maximum length needs to be found
      * @return int Returns maximum length value
      */
-    private static int findMaxLength(List<String> strArr) {
-        int maxLength = strArr.get(0).length();
+    private static int findMaxLength(String[] strArr) {
+        int maxLength = strArr[0].length();
         for (String str : strArr)
             maxLength = Math.max(maxLength, str.length());
         return maxLength;
@@ -43,12 +43,12 @@ public class LSDStringSort {
      * @param to           This is the ending index uptil which sorting operation will be continued
      * @return void
      */
-    private static void charSort(List<String> strArr, int charPosition, int from, int to) {
+    private static void charSort(String[] strArr, int charPosition, int from, int to) {
         int[] count = new int[ASCII_RANGE + 2];
-        String[] result = new String[strArr.size()];
+        String[] result = new String[strArr.length];
 
         for (int i = from; i <= to; i++) {
-            int c = charAsciiVal(strArr.get(i), charPosition);
+            int c = charAsciiVal(strArr[i], charPosition);
             count[c + 2]++;
         }
 
@@ -58,13 +58,13 @@ public class LSDStringSort {
 
         // distribute
         for (int i = from; i <= to; i++) {
-            int c = charAsciiVal(strArr.get(i), charPosition);
-            result[count[c + 1]++] = strArr.get(i);
+            int c = charAsciiVal(strArr[i], charPosition);
+            result[count[c + 1]++] = strArr[i];
         }
 
         // copy back
         for (int i = from; i <= to; i++)
-            strArr.set(i, result[i - from]);
+            strArr[i] = result[i - from];
     }
 
     /**
@@ -75,7 +75,7 @@ public class LSDStringSort {
      * @param to     This is the ending index uptil which sorting operation will be continued
      * @return void
      */
-    public static void sort(List<String> strArr, int from, int to) {
+    public static void sort(String[] strArr, int from, int to) {
         int maxLength = findMaxLength(strArr);
         for (int i = maxLength - 1; i >= 0; i--)
             charSort(strArr, i, from, to);
@@ -87,7 +87,7 @@ public class LSDStringSort {
      * @param strArr It contains an array of String on which LSD sort needs to be performed
      * @return void
      */
-    public static void sort(List<String> strArr) {
-        sort(strArr, 0, strArr.size() - 1);
+    public static void sort(String[] strArr) {
+        sort(strArr, 0, strArr.length - 1);
     }
 }
