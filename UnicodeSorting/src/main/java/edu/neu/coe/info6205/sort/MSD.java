@@ -4,7 +4,7 @@ import java.util.List;
 
 public class MSD {
 
-    private static final int R = 2560; // radix
+    private static int R = 2560; // radix
     private static final int M = 15; // cutoff for small subarrays
     private static String[] aux; // auxiliary array for distribution
 
@@ -16,9 +16,13 @@ public class MSD {
     }
 
     public static void sort(String[] a) {
+        System.out.println("MSDStringSort...Start");
         int N = a.length;
+        R = a.length;
         aux = new String[N];
         sort(a, 0, N - 1, 0);
+        System.out.println("MSDStringSort...Done!");
+
     }
 
     private static void sort(String[] a, int lo, int hi, int d) { // Sort from a[lo] to a[hi], starting at the dth
@@ -26,6 +30,7 @@ public class MSD {
         if (hi <= lo + M) {
             Insertion.sort(a, lo, hi, d);
             return;
+
         }
         int[] count = new int[R + 2]; // Compute frequency counts.
 

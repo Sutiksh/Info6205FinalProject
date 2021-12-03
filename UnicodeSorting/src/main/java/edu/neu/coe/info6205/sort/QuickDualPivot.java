@@ -6,9 +6,12 @@ public class QuickDualPivot {
 
     // quicksort the array a[] using dual-pivot quicksort
     public static void sort(Comparable[] a) {
+        System.out.println("QuickDualPivotSort...Start");
         StdRandom.shuffle(a);
         sort(a, 0, a.length - 1);
         assert isSorted(a);
+        System.out.println("QuickDualPivotSort...Done!");
+
     }
 
     // quicksort the subarray a[lo .. hi] using dual-pivot quicksort

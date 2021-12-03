@@ -43,7 +43,10 @@ public class TimSort<X extends Comparable<X>> extends SortWithHelper<X> {
     }
 
     public void sort(X[] xs, int from, int to) {
+        System.out.println("TimSort...Start");
         Arrays.sort(xs, from, to);
+        System.out.println("TimSort...Done!");
+
     }
 
     public static final String DESCRIPTION = "Timsort";
