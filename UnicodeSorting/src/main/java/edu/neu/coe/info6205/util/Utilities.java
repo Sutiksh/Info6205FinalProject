@@ -16,7 +16,7 @@ public class Utilities {
      */
     public static <T> T[] asArray(Collection<T> ts) {
         if (ts.isEmpty()) throw new RuntimeException("ts may not be empty");
-        @SuppressWarnings("unchecked") T[] result = (T[]) Array.newInstance(ts.iterator().next().getClass(), 0);
+        T[] result = (T[]) Array.newInstance(ts.iterator().next().getClass(), 0);
         return ts.toArray(result);
     }
 
@@ -63,7 +63,7 @@ public class Utilities {
     }
 
     public static <T> T[] fillRandomArray(Class<T> clazz, Random random, int n, Function<Random, T> f) {
-        @SuppressWarnings("unchecked") T[] result = (T[]) Array.newInstance(clazz, n);
+        T[] result = (T[]) Array.newInstance(clazz, n);
         for (int i = 0; i < n; i++) result[i] = f.apply(random);
         return result;
     }

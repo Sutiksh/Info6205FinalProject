@@ -10,7 +10,6 @@ import static org.junit.Assert.assertEquals;
 
 public class PrivateMethodTesterTest {
 
-    @SuppressWarnings("SameParameterValue")
     static
     class Mock {
         private final int x;
@@ -41,7 +40,6 @@ public class PrivateMethodTesterTest {
 
     }
 
-    @SuppressWarnings("SameReturnValue")
     private static int one() {
         return 1;
     }

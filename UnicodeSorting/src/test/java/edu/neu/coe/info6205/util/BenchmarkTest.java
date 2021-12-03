@@ -8,7 +8,6 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-@SuppressWarnings("ALL")
 public class BenchmarkTest {
     int pre = 0;
     int run = 0;

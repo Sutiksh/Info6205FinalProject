@@ -35,7 +35,6 @@ public class LazyLoggerTest {
         assertEquals(logger.isTraceEnabled(), se.isEvaluated());
     }
 
-    @SuppressWarnings("EmptyMethod")
     @Ignore
     public void testTraceLazyException() {
     }
@@ -47,7 +46,6 @@ public class LazyLoggerTest {
         assertEquals(logger.isDebugEnabled(), se.isEvaluated());
     }
 
-    @SuppressWarnings("EmptyMethod")
     @Ignore
     public void testDebugLazyException() {
     }

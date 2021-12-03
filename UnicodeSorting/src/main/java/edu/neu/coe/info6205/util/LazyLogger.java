@@ -12,7 +12,6 @@ import java.util.Enumeration;
 import java.util.ResourceBundle;
 import java.util.function.Supplier;
 
-@SuppressWarnings("rawtypes")
 public class LazyLogger extends Logger {
 
     public LazyLogger(Class<?> clazz) {
